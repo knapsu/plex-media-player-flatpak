@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>tv.plex.PlexMediaPlayer</id>
+  <name>Plex Media Player</name>
+  <summary>The ultimate home theater experience</summary>
+  <developer_name>Plex</developer_name>
+  <project_license>GPL-2.0,LicenseRef-proprietary</project_license>
+  <metadata_license>CC0-1.0</metadata_license>
+  <url type="homepage">https://plex.tv/</url>
+  <url type="help">https://forums.plex.tv/</url>
+  <url type="bugtracker">https://github.com/plexinc/plex-media-player/issues</url>
+  <url type="translate">https://www.transifex.com/plex-1/plex-web/</url>
+  <description>
+    <p>Plex is a client-server software that makes it easy to watch different kinds of digital media on all kinds of devices, including living room TV, computer, tablet and even phone.</p>
+    <p>Plex Media Player is the computer desktop client that connects to Plex Media Server system where your video, music and photo collections are stored and organized.</p>
+  </description>
+  <releases>
+    <release version="2.34.0" date="2019-05-23" />
+    <release version="2.33.1" date="2019-05-02" />
+  </releases>
+  <content_rating type="oars-1.0" />
+</component>
