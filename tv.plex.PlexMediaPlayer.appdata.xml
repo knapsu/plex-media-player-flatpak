@@ -14,9 +14,43 @@
     <p>Plex is a client-server software that makes it easy to watch different kinds of digital media on all kinds of devices, including living room TV, computer, tablet and even phone.</p>
     <p>Plex Media Player is the computer desktop client that connects to Plex Media Server system where your video, music and photo collections are stored and organized.</p>
   </description>
+  <categories>
+    <category>AudioVideo</category>
+    <category>Video</category>
+    <category>Player</category>
+    <category>TV</category>
+  </categories>
   <releases>
-    <release version="2.34.0" date="2019-05-23" />
-    <release version="2.33.1" date="2019-05-02" />
+    <release version="2.58.0.1076-38e019da" date="2020-05-26"/>
+    <release version="2.57.0.1074-f7d709d1" date="2020-05-12"/>
+    <release version="2.56.0.1071-85947843" date="2020-04-28"/>
+    <release version="2.55.0.1069-2369bed9" date="2020-04-14"/>
+    <release version="2.54.0.1067-1a7bc4f6" date="2020-03-31"/>
+    <release version="2.53.0.1063-4c40422c" date="2020-03-18"/>
+    <release version="2.52.2.1056-29c49026" date="2020-03-06"/>
+    <release version="2.52.1.1054-86a2dc81" date="2020-03-05"/>
+    <release version="2.52.0.1051-1f84c4dc" date="2020-03-04"/>
+    <release version="2.51.0.1048-dda6b0b1" date="2020-02-20"/>
+    <release version="2.50.0.1045-37e9e857" date="2020-02-04"/>
+    <release version="2.49.0.1041-bf8608f7" date="2020-01-21"/>
+    <release version="2.48.0.1038-11b21f57" date="2020-01-07"/>
+    <release version="2.47.0.1035-e74d341b" date="2019-12-10"/>
+    <release version="2.46.0.1031-6dc7c723" date="2019-12-02"/>
+    <release version="2.45.0.1028-45edbf41" date="2019-11-14"/>
+    <release version="2.44.0.1018-8f77cbb9" date="2019-10-15"/>
+    <release version="2.43.0.1015-c1291c39" date="2019-10-01"/>
+    <release version="2.42.0.1013-712b8c6f" date="2019-09-18"/>
+    <release version="2.41.0.1010-286e05db" date="2019-09-04"/>
+    <release version="2.40.0.1007-5482132c" date="2019-08-20"/>
+    <release version="2.39.0.1005-1b0839a8" date="2019-08-07"/>
+    <release version="2.38.0.999-e14e4d74" date="2019-07-23"/>
+    <release version="2.37.2.996-bea4f9ca" date="2019-07-11"/>
+    <release version="2.37.1.994-ac3132ba" date="2019-07-09"/>
+    <release version="2.36.0.988-0150ae52" date="2019-06-25"/>
+    <release version="2.35.1.986-29666b14" date="2019-06-13"/>
+    <release version="2.34.0.983-edb7fbf7" date="2019-05-23"/>
+    <release version="2.33.1.979-c4087ea7" date="2019-05-01"/>
+    <release version="2.32.0.973-62b2e27f" date="2019-04-16"/>
   </releases>
-  <content_rating type="oars-1.0" />
+  <content_rating type="oars-1.0"/>
 </component>

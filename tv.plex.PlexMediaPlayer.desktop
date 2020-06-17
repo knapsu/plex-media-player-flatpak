@@ -1,9 +1,0 @@
-[Desktop Entry]
-Version=1.0
-Type=Application
-Name=Plex Media Player
-Exec=plexmediaplayer
-Icon=tv.plex.PlexMediaPlayer
-Terminal=false
-Categories=AudioVideo;Player;
-StartupWMClass=plexmediaplayer
