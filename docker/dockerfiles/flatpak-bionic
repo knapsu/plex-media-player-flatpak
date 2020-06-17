@@ -1,0 +1,43 @@
+FROM ubuntu:bionic
+
+ARG DEBIAN_FRONTEND=noninteractive
+
+ADD assets/dpkg_nodoc /etc/dpkg/dpkg.cfg.d/90_nodoc
+ADD assets/dpkg_nolocale /etc/dpkg/dpkg.cfg.d/90_nolocale
+ADD assets/apt_nocache /etc/apt/apt.conf.d/90_nocache
+ADD assets/apt_mindeps /etc/apt/apt.conf.d/90_mindeps
+
+# Add package repositories
+RUN set -e \
+  && apt-get update \
+  && apt-get install -y \
+    apt-transport-https \
+    nano \
+    curl \
+    wget \
+  && apt-get install -y software-properties-common \
+  && add-apt-repository -y ppa:alexlarsson/flatpak \
+  && add-apt-repository -y ppa:git-core/ppa \
+  && add-apt-repository -y ppa:pulse-eight/libcec \
+  && rm -rf /var/lib/apt/lists/* \
+  && rm -rf /tmp/* /var/tmp/* /var/log/*
+
+# Install development tools and libraries
+RUN set -e \
+  && apt-get update \
+  && apt-get install -y \
+    flatpak \
+    flatpak-builder \
+    build-essential \
+    elfutils \
+    jq \
+  && ln -s /usr/bin/python3 /usr/bin/python \
+  && rm -rf /var/lib/apt/lists/* \
+  && rm -rf /tmp/* /var/tmp/* /var/log/*
+
+# Setup Flatpak
+RUN set -e \
+  && flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo \
+  && flatpak install --noninteractive --no-related flathub \
+    org.kde.Platform//5.12 \
+    org.kde.Sdk//5.12
