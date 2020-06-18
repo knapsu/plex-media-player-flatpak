@@ -26,11 +26,13 @@ RUN set -e \
 RUN set -e \
   && apt-get update \
   && apt-get install -y \
+    git \
+    jq \
     flatpak \
     flatpak-builder \
     build-essential \
+    binutils \
     elfutils \
-    jq \
   && ln -s /usr/bin/python3 /usr/bin/python \
   && rm -rf /var/lib/apt/lists/* \
   && rm -rf /tmp/* /var/tmp/* /var/log/*
