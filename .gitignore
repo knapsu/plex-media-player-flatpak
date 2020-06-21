@@ -1,3 +1,6 @@
+.directory
 .flatpak-builder/
+app/
 build*/
-repo/
+cache/
+repo*/

@@ -1,6 +1,5 @@
 {
   "app-id": "tv.plex.PlexMediaPlayer",
-  "branch": "master",
   "runtime": "org.kde.Platform",
   "runtime-version": "5.12",
   "sdk": "org.kde.Sdk",
@@ -22,7 +21,7 @@
     "--system-talk-name=org.freedesktop.login1"
   ],
   "build-options": {
-    "no-debuginfo": true
+    "strip": true
   },
   "modules": [
     {
@@ -35,6 +34,7 @@
       },
       "config-opts": [
         "-DCMAKE_BUILD_TYPE=Release",
+        "-DCMAKE_INSTALL_PREFIX=/app",
         "-DQTROOT=/usr"
       ],
       "post-install": [
@@ -77,7 +77,7 @@
           "name": "libmpv",
           "buildsystem": "simple",
           "build-commands": [
-            "python3 waf configure --prefix=/app --enable-libmpv-shared --disable-cplayer --disable-build-date --disable-manpage-build --enable-vaapi --enable-vdpau --enable-cuda-hwaccel --enable-pulse --disable-alsa --disable-oss-audio --disable-tv",
+            "python3 waf configure --prefix=/app --enable-libmpv-shared --disable-cplayer --disable-build-date --disable-manpage-build --enable-vaapi --enable-vdpau --enable-cuda-hwaccel --enable-pulse --enable-alsa --disable-oss-audio --disable-tv",
             "python3 waf build",
             "python3 waf install"
           ],
@@ -118,7 +118,6 @@
                 "--enable-shared",
                 "--disable-static",
                 "--enable-gnutls",
-                "--enable-pic",
                 "--disable-doc",
                 "--disable-programs",
                 "--disable-encoders",
