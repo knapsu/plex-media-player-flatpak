@@ -43,19 +43,14 @@ fi
 # Define package version string
 # When building from tag use number from its name
 # In all other situations use current date and commit hash
+FLATPAK_SUBJECT="Plex Media Player"
 if [[ -n "${PLEX_TAG}" ]]; then
-  VERSION="${PLEX_TAG}"
+  FLATPAK_SUBJECT="Plex Media Player ${PLEX_TAG}"
   if [[ "${VERSION}" =~ ^v[0-9]+ ]]; then
-    VERSION=${VERSION:1}
+    FLATPAK_SUBJECT="Plex Media Player ${VERSION:1}"
   fi
-else
-  # VERSION="${DATE}-${COMMIT_HASH}"
-  VERSION="${DATE}"
 fi
 
 # Create Flatpak
 cd app
-flatpak-builder --state-dir=../cache/flatpak-builder --subject="Plex Media Player ${VERSION}" --repo=repo build tv.plex.PlexMediaPlayer.json
-
-rm -rf ../repo
-mv repo ../repo
+flatpak-builder --state-dir=../cache/flatpak-builder --subject="${FLATPAK_SUBJECT}" --repo=repo build tv.plex.PlexMediaPlayer.json

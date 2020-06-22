@@ -35,7 +35,6 @@ RUN set -e \
     elfutils \
     patch \
     librsvg2-common \
-    rsync \
   && ln -s /usr/bin/python3 /usr/bin/python \
   && rm -rf /var/lib/apt/lists/* \
   && rm -rf /tmp/* /var/tmp/* /var/log/*

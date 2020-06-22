@@ -115,9 +115,9 @@
             {
               "name": "ffmpeg",
               "config-opts": [
+                "--prefix=/usr",
                 "--enable-shared",
                 "--disable-static",
-                "--enable-gnutls",
                 "--disable-doc",
                 "--disable-programs",
                 "--disable-encoders",

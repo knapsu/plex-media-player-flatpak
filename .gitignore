@@ -4,3 +4,4 @@ app/
 build*/
 cache/
 repo*/
+keys/id_rsa
