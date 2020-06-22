@@ -25,20 +25,19 @@ mkdir -p app
 # When building from tag the manifest file must be modified to match the source package
 if [[ -n "${PLEX_TAG}" ]]; then
   echo "Modifying manifest file to use ${PLEX_TAG} source"
-  cat tv.plex.PlexMediaPlayer.json | jq -r '.modules[].sources[0].tag="${PLEX_TAG}"' > app/tv.plex.PlexMediaPlayer.json
+  cat tv.plex.PlexMediaPlayer.json | jq -r ".modules[].sources[0].tag=\"${PLEX_TAG}\"" > app/tv.plex.PlexMediaPlayer.json
 else
   cp tv.plex.PlexMediaPlayer.json app/tv.plex.PlexMediaPlayer.json
 fi
 
 # AppStream metadata file
 # When building from tag ensure the metadata file contains release information
-if [[ -n "${PLEX_TAG}" ]]; then
-  echo "Modifying metadata file to include ${PLEX_TAG} release"
-  # TODO
-  # curl -f -s -S -o - https://api.github.com/repos/plexinc/plex-media-player/releases | jq -c ".[] | {tag_name, published_at}" | sed -E 's/\{"tag_name":"(.+)","published_at":"(.+)T.+"\}/<release version="\1" date="\2"\/>/'
-else
+# if [[ -n "${PLEX_TAG}" ]]; then
+#   echo "Modifying metadata file to include ${PLEX_TAG} release"
+#   # curl -f -s -S -o - https://api.github.com/repos/plexinc/plex-media-player/releases | jq -c ".[] | {tag_name, published_at}" | sed -E 's/\{"tag_name":"(.+)","published_at":"(.+)T.+"\}/<release version="\1" date="\2"\/>/'
+# else
   cp tv.plex.PlexMediaPlayer.appdata.xml app/tv.plex.PlexMediaPlayer.appdata.xml
-fi
+# fi
 
 # Define package version string
 # When building from tag use number from its name
