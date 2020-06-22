@@ -115,7 +115,6 @@
             {
               "name": "ffmpeg",
               "config-opts": [
-                "--prefix=/usr",
                 "--enable-shared",
                 "--disable-static",
                 "--disable-doc",
@@ -167,7 +166,7 @@
               "buildsystem": "cmake-ninja",
               "config-opts": [
                 "-DCMAKE_BUILD_TYPE=Release",
-                "-DBUILD_STATIC=0"
+                "-DBUILD_STATIC=OFF"
               ],
               "cleanup": [ "/bin", "/lib/pkgconfig", "/lib64/pkgconfig", "/share", "/include" ],
               "sources": [
