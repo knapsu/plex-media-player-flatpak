@@ -11,10 +11,12 @@ env:
   - DOCKER_IMAGE=knapsu/plex-media-player-flatpak:bionic
 
 before_script:
+  - openssl aes-256-cbc -K $encrypted_f217180e22ee_key -iv $encrypted_f217180e22ee_iv -in keys/id_rsa.enc -out ~/.ssh/id_rsa -d
+  - chmod go-rwx ~/.ssh/id_rsa
+  - echo -e "Host *\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
   - docker pull ${DOCKER_IMAGE}
   - env | grep -E "^TRAVIS|^DOCKER|^PLEX" > travis.env
   - docker run -t -d --volume ${TRAVIS_BUILD_DIR}:/plex --workdir /plex --env-file travis.env --name builder --device /dev/fuse --privileged ${DOCKER_IMAGE}
-  - echo -e "Host *\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 
 script:
   - docker exec -t builder ./scripts/build.sh
@@ -25,4 +27,5 @@ after_script:
 
 cache:
   directories:
-  - cache
+  - flatpak-builder
+  - repo

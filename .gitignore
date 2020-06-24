@@ -1,7 +1,6 @@
 .directory
-.flatpak-builder/
 app/
 build*/
-cache/
+flatpak-builder/
 repo*/
 keys/id_rsa

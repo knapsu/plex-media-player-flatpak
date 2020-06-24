@@ -52,4 +52,4 @@ fi
 
 # Create Flatpak
 cd app
-flatpak-builder --state-dir=../cache/flatpak-builder --subject="${FLATPAK_SUBJECT}" --repo=repo build tv.plex.PlexMediaPlayer.json
+flatpak-builder --state-dir=../flatpak-builder --subject="${FLATPAK_SUBJECT}" build tv.plex.PlexMediaPlayer.json
