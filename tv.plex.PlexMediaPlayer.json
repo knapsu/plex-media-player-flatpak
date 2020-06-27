@@ -4,8 +4,6 @@
   "runtime-version": "5.12",
   "sdk": "org.kde.Sdk",
   "command": "plexmediaplayer",
-  "rename-desktop-file": "plexmediaplayer.desktop",
-  "rename-icon": "plexmediaplayer",
   "finish-args": [
     "--socket=x11",
     "--socket=wayland",
@@ -35,17 +33,24 @@
       "config-opts": [
         "-DCMAKE_BUILD_TYPE=Release",
         "-DCMAKE_INSTALL_PREFIX=/app",
+        "-DVERSION_BUILD=knapsu",
+        "-DOpenGL_GL_PREFERENCE=GLVND",
         "-DQTROOT=/usr"
       ],
       "post-install": [
-        "install -Dm644 tv.plex.PlexMediaPlayer.appdata.xml /app/share/metainfo/tv.plex.PlexMediaPlayer.appdata.xml",
+        "install -Dm644 tv.plex.PlexMediaPlayer.desktop /app/share/applications/tv.plex.PlexMediaPlayer.desktop",
         "install -Dm644 resources/images/icon.png /app/share/icons/hicolor/256x256/apps/tv.plex.PlexMediaPlayer.png",
-        "install -Dm644 resources/images/icon.svg /app/share/icons/hicolor/scalable/apps/tv.plex.PlexMediaPlayer.svg"
+        "install -Dm644 resources/images/icon.svg /app/share/icons/hicolor/scalable/apps/tv.plex.PlexMediaPlayer.svg",
+        "install -Dm644 tv.plex.PlexMediaPlayer.appdata.xml /app/share/metainfo/tv.plex.PlexMediaPlayer.appdata.xml"
       ],
       "sources": [
         {
           "type": "git",
           "url": "https://github.com/plexinc/plex-media-player.git"
+        },
+        {
+          "type": "file",
+          "path": "tv.plex.PlexMediaPlayer.desktop"
         },
         {
           "type": "file",
@@ -117,6 +122,8 @@
               "config-opts": [
                 "--enable-shared",
                 "--disable-static",
+                "--enable-gnutls",
+                "--enable-pic",
                 "--disable-doc",
                 "--disable-programs",
                 "--disable-encoders",
