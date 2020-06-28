@@ -43,8 +43,9 @@ if [[ -n "${PLEX_TAG}" ]]; then
   fi
   sed -z -E "s|<releases>.*</releases>|<releases><release version=\"${VERSION}\"/></releases>|" -i app/tv.plex.PlexMediaPlayer.appdata.xml
 else
+  echo "Stripping release information from metadata file"
   cp tv.plex.PlexMediaPlayer.appdata.xml app/tv.plex.PlexMediaPlayer.appdata.xml
-  sed -z -E "s|<releases>.*</releases>|<releases></releases>|" -i app/tv.plex.PlexMediaPlayer.appdata.xml
+  sed -z -E "s|<releases>.*</releases>||" -i app/tv.plex.PlexMediaPlayer.appdata.xml
 fi
 
 # Desktop file
