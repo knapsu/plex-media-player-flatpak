@@ -1,6 +1,9 @@
 .directory
+.flatpak-builder/
+flatpak-builder/
 app/
 build*/
-flatpak-builder/
 repo*/
 keys/id_rsa
+keys/pgp-flatpak.asc
+build.log

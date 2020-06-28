@@ -19,9 +19,28 @@
     "--system-talk-name=org.freedesktop.login1"
   ],
   "build-options": {
+    "append-pkg-config-path": "/app/lib64/pkgconfig",
     "strip": true
   },
   "modules": [
+    {
+      "name": "cmake",
+      "buildsystem": "autotools",
+      "config-opts": [
+        "--prefix=/app",
+        "--",
+        "-DCMAKE_USE_OPENSSL=ON",
+        "-DBUILD_TESTING=OFF"
+      ],
+      "cleanup": [ "*" ],
+      "sources": [
+        {
+          "type": "archive",
+          "url": "https://github.com/Kitware/CMake/releases/download/v3.17.3/cmake-3.17.3.tar.gz",
+          "sha256": "0bd60d512275dc9f6ef2a2865426a184642ceb3761794e6b65bff233b91d8c40"
+        }
+      ]
+    },
     {
       "name": "plex-media-player",
       "buildsystem": "cmake-ninja",
@@ -32,10 +51,8 @@
       },
       "config-opts": [
         "-DCMAKE_BUILD_TYPE=Release",
-        "-DCMAKE_INSTALL_PREFIX=/app",
-        "-DVERSION_BUILD=knapsu",
-        "-DOpenGL_GL_PREFERENCE=GLVND",
-        "-DQTROOT=/usr"
+        "-DQTROOT=/usr",
+        "-DOpenGL_GL_PREFERENCE=GLVND"
       ],
       "post-install": [
         "install -Dm644 tv.plex.PlexMediaPlayer.desktop /app/share/applications/tv.plex.PlexMediaPlayer.desktop",
@@ -59,30 +76,10 @@
       ],
       "modules": [
         {
-          "name": "cmake",
-          "buildsystem": "autotools",
-          "config-opts": [
-            "--prefix=/app",
-            "--",
-            "-DCMAKE_USE_OPENSSL=ON",
-            "-DBUILD_CursesDialog=OFF",
-            "-DBUILD_QtDialog=OFF",
-            "-DCMAKE_SKIP_BOOTSTRAP_TEST=ON"
-          ],
-          "cleanup": [ "/bin", "/share", "/doc" ],
-          "sources": [
-            {
-              "type": "archive",
-              "url": "https://github.com/Kitware/CMake/releases/download/v3.17.3/cmake-3.17.3.tar.gz",
-              "sha256": "0bd60d512275dc9f6ef2a2865426a184642ceb3761794e6b65bff233b91d8c40"
-            }
-          ]
-        },
-        {
           "name": "mpv",
           "buildsystem": "simple",
           "build-commands": [
-            "python3 waf configure --prefix=/app --enable-libmpv-shared --disable-cplayer --disable-build-date --disable-manpage-build --enable-vaapi --enable-vdpau --enable-cuda-hwaccel --enable-pulse --enable-alsa --disable-oss-audio --disable-tv",
+            "python3 waf configure --prefix=/app --enable-libmpv-shared --disable-cplayer --disable-build-date --disable-manpage-build --enable-vaapi --enable-vdpau --enable-cuda-hwaccel --enable-pulse --enable-alsa --disable-oss-audio --disable-tv --enable-uchardet",
             "python3 waf build",
             "python3 waf install"
           ],
@@ -173,6 +170,7 @@
               "buildsystem": "cmake-ninja",
               "config-opts": [
                 "-DCMAKE_BUILD_TYPE=Release",
+                "-DBUILD_BINARY=OFF",
                 "-DBUILD_STATIC=OFF"
               ],
               "cleanup": [ "/bin", "/lib/pkgconfig", "/lib64/pkgconfig", "/share", "/include" ],
