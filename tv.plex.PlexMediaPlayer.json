@@ -20,6 +20,7 @@
     "--system-talk-name=org.freedesktop.login1"
   ],
   "build-options": {
+    "append-ld-library-path": "/app/lib64",
     "append-pkg-config-path": "/app/lib64/pkgconfig",
     "strip": true
   },
@@ -172,9 +173,10 @@
               "config-opts": [
                 "-DCMAKE_BUILD_TYPE=Release",
                 "-DBUILD_BINARY=OFF",
-                "-DBUILD_STATIC=OFF"
+                "-DBUILD_STATIC=ON",
+                "-DBUILD_SHARED_LIBS=OFF"
               ],
-              "cleanup": [ "/bin", "/lib/pkgconfig", "/lib64/pkgconfig", "/share", "/include" ],
+              "cleanup": [ "/lib64/*.a", "/lib64/pkgconfig", "/share", "/include" ],
               "sources": [
                 {
                   "type": "archive",
