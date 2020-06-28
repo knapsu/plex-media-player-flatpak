@@ -8,10 +8,10 @@ WORKDIR=${PWD}
 BUILD_DIR="app/build"
 REPO_DIR="repo"
 
-# if [[ -z "${PLEX_TAG}" ]]; then
-#   echo "Not a release. Skipping upload."
-#   exit
-# fi
+if [[ -z "${PLEX_TAG}" ]]; then
+  echo "Not a release. Skipping upload."
+  exit
+fi
 
 if [ ! -d "${BUILD_DIR}" ]; then
   echo "Build directory not found"
