@@ -22,7 +22,9 @@ script:
   - env | grep -E "^TRAVIS|^DOCKER|^PLEX" > travis.env
   - docker run -t -d --volume ${TRAVIS_BUILD_DIR}:/plex --workdir /plex --env-file travis.env --name builder --device /dev/fuse --privileged ${DOCKER_IMAGE}
   - docker exec -t builder ./scripts/build.sh
-  - ./scripts/publish.sh
+  - ./scripts/repo.sh --download
+  - docker exec -t builder ./scripts/export.sh
+  - ./scripts/repo.sh --upload
 
 after_script:
   - docker stop builder
