@@ -19,7 +19,9 @@ if [ ! -d "${BUILD_DIR}" ]; then
 fi
 
 echo "Import PGP key for signing"
+set +e
 gpg --import keys/pgp-flatpak.asc
+set -e
 
 echo "Add package to repository"
 FLATPAK_SUBJECT="Plex Media Player"
