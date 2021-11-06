@@ -118,7 +118,7 @@
               "config-opts": [
                 "--enable-shared",
                 "--disable-static",
-                "--enable-gnutls",
+                "--enable-openssl",
                 "--enable-pic",
                 "--disable-doc",
                 "--disable-programs",
