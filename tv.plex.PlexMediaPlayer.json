@@ -1,7 +1,7 @@
 {
   "app-id": "tv.plex.PlexMediaPlayer",
   "runtime": "org.kde.Platform",
-  "runtime-version": "5.12",
+  "runtime-version": "5.9",
   "sdk": "org.kde.Sdk",
   "command": "plexmediaplayer",
   "finish-args": [
