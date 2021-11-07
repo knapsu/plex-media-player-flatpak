@@ -21,6 +21,7 @@
     <category>TV</category>
   </categories>
   <releases>
+    <release version="2.58.1-ae73e074" date="2021-06-08"/>
     <release version="2.58.0.1076-38e019da" date="2020-05-26"/>
     <release version="2.57.0.1074-f7d709d1" date="2020-05-12"/>
     <release version="2.56.0.1071-85947843" date="2020-04-28"/>
