@@ -1,8 +1,10 @@
 {
   "app-id": "tv.plex.PlexMediaPlayer",
   "runtime": "org.kde.Platform",
-  "runtime-version": "5.9",
+  "runtime-version": "5.15",
   "sdk": "org.kde.Sdk",
+  "base": "io.qt.qtwebengine.BaseApp",
+  "base-version": "5.15",
   "command": "plexmediaplayer",
   "finish-args": [
     "--socket=x11",
@@ -36,8 +38,8 @@
       "sources": [
         {
           "type": "archive",
-          "url": "https://github.com/Kitware/CMake/releases/download/v3.17.3/cmake-3.17.3.tar.gz",
-          "sha256": "0bd60d512275dc9f6ef2a2865426a184642ceb3761794e6b65bff233b91d8c40"
+          "url": "https://github.com/Kitware/CMake/releases/download/v3.22.1/cmake-3.22.1.tar.gz",
+          "sha256": "0e998229549d7b3f368703d20e248e7ee1f853910d42704aa87918c213ea82c0"
         }
       ]
     },
@@ -63,7 +65,8 @@
       "sources": [
         {
           "type": "git",
-          "url": "https://github.com/plexinc/plex-media-player.git"
+          "url": "https://github.com/plexinc/plex-media-player.git",
+          "tag": "v2.58.1-ae73e074"
         },
         {
           "type": "file",
@@ -87,13 +90,13 @@
           "sources": [
             {
               "type": "archive",
-              "url": "https://github.com/mpv-player/mpv/archive/v0.29.1.tar.gz",
-              "sha256": "f9f9d461d1990f9728660b4ccb0e8cb5dce29ccaa6af567bec481b79291ca623"
+              "url": "https://github.com/mpv-player/mpv/archive/v0.34.0.tar.gz",
+              "sha256": "f654fb6275e5178f57e055d20918d7d34e19949bc98ebbf4a7371902e88ce309"
             },
             {
               "type": "file",
-              "url": "https://waf.io/waf-2.0.9",
-              "sha256": "2a8e0816f023995e557f79ea8940d322bec18f286917c8f9a6fa2dc3875dfa48",
+              "url": "https://waf.io/waf-2.0.23",
+              "sha256": "28a2e4583314a162cfcbffefb8a9202c1d7869040d30b5852da479b76d9c0491",
               "dest-filename": "waf"
             }
           ],
@@ -108,8 +111,8 @@
               "sources": [
                 {
                   "type": "archive",
-                  "url": "https://github.com/FFmpeg/nv-codec-headers/releases/download/n8.2.15.8/nv-codec-headers-8.2.15.8.tar.gz",
-                  "sha256": "770b20b7e63adf84d42394b50425cf9ac7925913ac4f77faba552aa525dd437a"
+                  "url": "https://github.com/FFmpeg/nv-codec-headers/releases/download/n11.1.5.0/nv-codec-headers-11.1.5.0.tar.gz",
+                  "sha256": "5b3692da3215006ea9fb5585b046605133cd111eb63e376feb5309ccb5ff13dc"
                 }
               ]
             },
@@ -132,8 +135,8 @@
               "cleanup": [ "/lib/pkgconfig", "/share", "/include" ],
               "sources": [{
                 "type": "archive",
-                "url": "https://ffmpeg.org/releases/ffmpeg-4.1.6.tar.xz",
-                "sha256": "1f7dc856850c6f5d6def660cb4429afcc60980b3a09815ee2e3e1421d75fdc62"
+                "url": "https://ffmpeg.org/releases/ffmpeg-4.4.1.tar.xz",
+                "sha256": "eadbad9e9ab30b25f5520fbfde99fae4a92a1ae3c0257a8d68569a4651e30e02"
               }]
             },
             {
@@ -146,8 +149,8 @@
               "sources": [
                 {
                   "type": "archive",
-                  "url": "https://github.com/libass/libass/releases/download/0.14.0/libass-0.14.0.tar.xz",
-                  "sha256": "881f2382af48aead75b7a0e02e65d88c5ebd369fe46bc77d9270a94aa8fd38a2"
+                  "url": "https://github.com/libass/libass/releases/download/0.15.2/libass-0.15.2.tar.xz",
+                  "sha256": "1be2df9c4485a57d78bb18c0a8ed157bc87a5a8dd48c661961c625cb112832fd"
                 }
               ],
               "modules": [
@@ -157,8 +160,8 @@
                   "sources": [
                     {
                       "type": "archive",
-                      "url": "https://github.com/fribidi/fribidi/releases/download/0.19.7/fribidi-0.19.7.tar.bz2",
-                      "sha256": "08222a6212bbc2276a2d55c3bf370109ae4a35b689acbc66571ad2a670595a8e"
+                      "url": "https://github.com/fribidi/fribidi/releases/download/v1.0.11/fribidi-1.0.11.tar.xz",
+                      "sha256": "30f93e9c63ee627d1a2cedcf59ac34d45bf30240982f99e44c6e015466b4e73d"
                     }
                   ]
                 }
