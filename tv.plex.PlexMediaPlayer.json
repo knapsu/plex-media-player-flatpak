@@ -1,10 +1,10 @@
 {
   "app-id": "tv.plex.PlexMediaPlayer",
   "runtime": "org.kde.Platform",
-  "runtime-version": "5.15",
+  "runtime-version": "5.15-21.08",
   "sdk": "org.kde.Sdk",
   "base": "io.qt.qtwebengine.BaseApp",
-  "base-version": "5.15",
+  "base-version": "5.15-21.08",
   "command": "plexmediaplayer",
   "finish-args": [
     "--socket=x11",
