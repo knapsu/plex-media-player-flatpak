@@ -25,6 +25,7 @@
     "strip": true
   },
   "modules": [
+    "modules/io.mpv.Mpv.yml",
     {
       "name": "plex-media-player",
       "buildsystem": "cmake-ninja",
@@ -57,116 +58,6 @@
         {
           "type": "file",
           "path": "tv.plex.PlexMediaPlayer.appdata.xml"
-        }
-      ],
-      "modules": [
-        {
-          "name": "mpv",
-          "buildsystem": "simple",
-          "build-commands": [
-            "python3 waf configure --prefix=/app --enable-libmpv-shared --disable-cplayer --disable-build-date --disable-manpage-build --enable-vaapi --enable-vdpau --enable-cuda-hwaccel --enable-pulse --enable-alsa --disable-oss-audio --disable-tv --enable-uchardet",
-            "python3 waf build",
-            "python3 waf install"
-          ],
-          "cleanup": [ "/lib/pkgconfig", "/share", "/include" ],
-          "sources": [
-            {
-              "type": "archive",
-              "url": "https://github.com/mpv-player/mpv/archive/v0.34.0.tar.gz",
-              "sha256": "f654fb6275e5178f57e055d20918d7d34e19949bc98ebbf4a7371902e88ce309"
-            },
-            {
-              "type": "file",
-              "url": "https://waf.io/waf-2.0.23",
-              "sha256": "28a2e4583314a162cfcbffefb8a9202c1d7869040d30b5852da479b76d9c0491",
-              "dest-filename": "waf"
-            }
-          ],
-          "modules": [
-            {
-              "name": "ffnvcodec",
-              "buildsystem": "simple",
-              "build-commands": [
-                  "make install PREFIX=/app"
-              ],
-              "cleanup": [ "/lib/pkgconfig", "/include" ],
-              "sources": [
-                {
-                  "type": "archive",
-                  "url": "https://github.com/FFmpeg/nv-codec-headers/releases/download/n11.1.5.0/nv-codec-headers-11.1.5.0.tar.gz",
-                  "sha256": "5b3692da3215006ea9fb5585b046605133cd111eb63e376feb5309ccb5ff13dc"
-                }
-              ]
-            },
-            {
-              "name": "ffmpeg",
-              "config-opts": [
-                "--enable-shared",
-                "--disable-static",
-                "--enable-openssl",
-                "--enable-pic",
-                "--disable-doc",
-                "--disable-programs",
-                "--disable-encoders",
-                "--disable-muxers",
-                "--disable-devices",
-                "--enable-vaapi",
-                "--enable-vdpau",
-                "--enable-cuvid"
-              ],
-              "cleanup": [ "/lib/pkgconfig", "/share", "/include" ],
-              "sources": [{
-                "type": "archive",
-                "url": "https://ffmpeg.org/releases/ffmpeg-4.4.1.tar.xz",
-                "sha256": "eadbad9e9ab30b25f5520fbfde99fae4a92a1ae3c0257a8d68569a4651e30e02"
-              }]
-            },
-            {
-              "name": "libass",
-              "config-opts": [
-                "--enable-shared",
-                "--disable-static"
-              ],
-              "cleanup": [ "/lib/*.la", "/lib/pkgconfig", "/include" ],
-              "sources": [
-                {
-                  "type": "archive",
-                  "url": "https://github.com/libass/libass/releases/download/0.15.2/libass-0.15.2.tar.xz",
-                  "sha256": "1be2df9c4485a57d78bb18c0a8ed157bc87a5a8dd48c661961c625cb112832fd"
-                }
-              ],
-              "modules": [
-                {
-                  "name": "fribidi",
-                  "cleanup": [ "/bin", "/lib/*.la", "/lib/pkgconfig", "/share", "/include" ],
-                  "sources": [
-                    {
-                      "type": "archive",
-                      "url": "https://github.com/fribidi/fribidi/releases/download/v1.0.11/fribidi-1.0.11.tar.xz",
-                      "sha256": "30f93e9c63ee627d1a2cedcf59ac34d45bf30240982f99e44c6e015466b4e73d"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "name": "uchardet",
-              "buildsystem": "cmake-ninja",
-              "config-opts": [
-                "-DCMAKE_BUILD_TYPE=Release",
-                "-DCMAKE_INSTALL_LIBDIR=lib",
-                "-DBUILD_BINARY=OFF"
-              ],
-              "cleanup": [ "/lib/*.a", "/lib/pkgconfig", "/share", "/include" ],
-              "sources": [
-                {
-                  "type": "archive",
-                  "url": "https://www.freedesktop.org/software/uchardet/releases/uchardet-0.0.7.tar.xz",
-                  "sha256": "3fc79408ae1d84b406922fa9319ce005631c95ca0f34b205fad867e8b30e45b1"
-                }
-              ]
-            }
-          ]
         }
       ]
     }
