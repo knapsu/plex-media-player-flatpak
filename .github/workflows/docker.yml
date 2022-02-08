@@ -6,9 +6,7 @@ jobs:
     container: knapsu/plex-media-player-flatpak:bionic
     runs-on: ubuntu-latest
     steps:
-      - name: Test shell
-        run: echo "Running on ${{ runner.os }} virtual machine"
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Test variable
-        run: echo "Job status ${{ job.status }}"
+      - name: Run build script
+        run: ./scripts/build.sh

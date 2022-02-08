@@ -1,43 +1,44 @@
 name: Bug Report
-description: Report problems with Flatpak package for Plex Media Player
+description: Report problems with Flatpak package
+title: "[Bug]: "
 body:
-
-- type: input
-  attributes:
-    label: Plex Media Player version
-    description: What version of PMP are you using? If unsure, run `flatpak info tv.plex.PlexMediaPlayer` in the terminal.
-    placeholder: 2.58.0
-  validations:
-    required: true
-- type: input
-  attributes:
-    label: Linux distribution name and version
-    description: What Linux distribution version are you using? If unsure, run `uname -a` in the terminal.
-    placeholder: "Ubuntu 20.04"
-- type: textarea
-  attributes:
-    label: How to reproduce
-    description: A clear description of how to reproduce the problem.
-    placeholder: |
-      1. Go to `...`
-      2. Click on `...`
-      3. Scroll down to `...`
-      4. See error
-  validations:
-    required: false
-- type: textarea
-  attributes:
-    label: Expected behavior
-    description: A clear and concise description of what you expected to happen.
-  validations:
-    required: true
-- type: textarea
-  attributes:
-    label: Actual behavior
-    description: A clear description of what actually happens.
-  validations:
-    required: true
-- type: textarea
-  attributes:
-    label: Additional information
-    description: If your problem needs further explanation, or if the issue you're seeing cannot be reproduced in a gist, please add more information here.
+  - type: input
+    attributes:
+      label: Plex version
+      description: What is your Plex Media Player application version? If unsure, run `flatpak info tv.plex.PlexMediaPlayer` in the terminal.
+      placeholder: 0.0.0-000000
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Linux version
+      description: What is your Linux distribution name and version? If unsure, run `uname -a` in the terminal.
+      placeholder: "Ubuntu 20.04"
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: How to reproduce
+      description: A step by step instructions how to reproduce the problem. If the problem cannot be reproduced by developers it will be difficult to fix 
+      placeholder: |
+        1. Go to `...`
+        2. Click on `...`
+        3. Scroll down to `...`
+        4. See error
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Expected behavior
+      description: A clear and concise description of what you expected to happen.
+  - type: textarea
+    attributes:
+      label: Actual behavior
+      description: A clear description of what actually happens.
+  - type: textarea
+    attributes:
+      label: Additional information
+      description: If your problem needs further explanation please add more information here.
+  - type: markdown
+    attributes:
+      value: "Thank you for completing this form :)"
