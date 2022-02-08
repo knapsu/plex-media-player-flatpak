@@ -1,0 +1,9 @@
+name: Continuous Integration
+on: push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Running on ${{ runner.os }} virtual machine"
+      - uses: actions/checkout@v2
+      - run: echo "Job status ${{ job.status }}"
