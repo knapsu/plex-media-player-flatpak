@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 
 ARG DEBIAN_FRONTEND=noninteractive
 
@@ -33,7 +33,6 @@ RUN set -e \
     binutils \
     elfutils \
     patch \
-    librsvg2-common \
     gpg-agent \
     pngcrush \
   && ln -s /usr/bin/python3 /usr/bin/python \
@@ -44,5 +43,6 @@ RUN set -e \
 RUN set -e \
   && flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo \
   && flatpak install --noninteractive --no-related flathub \
-    org.kde.Platform//5.9 \
-    org.kde.Sdk//5.9
+    org.kde.Platform//5.15-21.08 \
+    org.kde.Sdk//5.15-21.08 \
+    io.qt.qtwebengine.BaseApp//5.15-21.08

@@ -1,9 +1,13 @@
 name: Continuous Integration
-on: push
+on:
+  push:
+    paths-ignore:
+      - 'docker/**'
 jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
+    container: knapsu/plex-media-player-flatpak:focal
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
