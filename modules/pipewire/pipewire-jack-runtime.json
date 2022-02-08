@@ -1,0 +1,35 @@
+{
+    "name": "pipewire-jack-runtime",
+    "buildsystem": "simple",
+    "build-commands": [
+        "install -Dm644 *.h -t /app/include/jack/",
+        "install -Dm644 pipewire-jack-runtime.pc /app/lib/pkgconfig/jack.pc"
+    ],
+    "sources": [
+        {
+            "type": "git",
+            "url": "https://github.com/jackaudio/headers",
+            "branch": "master",
+            "commit": "4e53c8f0a33e9ed87eac5ca6e578b7ee92a1fd3d"
+        },
+        {
+            "type": "file",
+            "only-arches": [
+                "x86_64"
+            ],
+            "dest-filename": "pipewire-jack-runtime.pc",
+            "path": "pipewire-jack-runtime-x86_64.pc"
+        },
+        {
+            "type": "file",
+            "only-arches": [
+                "aarch64"
+            ],
+            "dest-filename": "pipewire-jack-runtime.pc",
+            "path": "pipewire-jack-runtime-aarch64.pc"
+        }
+    ],
+    "cleanup": [
+        "*"
+    ]
+}
