@@ -1,8 +1,9 @@
-name: Continuous Integration
+name: Docker
 on: push
 jobs:
   build:
     name: Build
+    container: knapsu/plex-media-player-flatpak:bionic
     runs-on: ubuntu-latest
     steps:
       - name: Test shell
