@@ -6,6 +6,7 @@ SCRIPTDIR=$(dirname "${SCRIPT}")
 WORKDIR="${PWD}"
 
 git config --global advice.detachedHead false
+git config --global init.defaultBranch master
 
 # Define build variables
 DATE=$(date -u +'%Y%m%d')
@@ -26,7 +27,8 @@ if [[ -n "${PLEX_TAG}" ]]; then
   cat tv.plex.PlexMediaPlayer.json | jq -r ".modules[1].sources[0].tag=\"${PLEX_TAG}\"" > app/tv.plex.PlexMediaPlayer.json
 fi
 
-# Flatpak manifest file contains source code information
+# Flatpak manifest file
+# Contains source code information
 if [[ -n "${PLEX_TAG}" ]]; then
   echo "Adjusting Flatpak manifest file"
   cat tv.plex.PlexMediaPlayer.json | jq -r ".modules[1].sources[0].tag=\"${PLEX_TAG}\"" > app/tv.plex.PlexMediaPlayer.json
@@ -34,7 +36,11 @@ else
   cp tv.plex.PlexMediaPlayer.json app/tv.plex.PlexMediaPlayer.json
 fi
 
-# AppStream metadata file contains release information
+# Flatpak manifest files for modules
+cp -r modules app/
+
+# AppStream metadata file
+# Contains release information
 if [[ -n "${PLEX_TAG}" ]]; then
   echo "Adjusting AppStream metadata file"
   cp tv.plex.PlexMediaPlayer.appdata.xml app/tv.plex.PlexMediaPlayer.appdata.xml
@@ -56,5 +62,7 @@ cp tv.plex.PlexMediaPlayer.desktop app/tv.plex.PlexMediaPlayer.desktop
 
 # Create Flatpak
 cd app
-cat tv.plex.PlexMediaPlayer.json
 flatpak-builder --state-dir=../flatpak-builder --delete-build-dirs build tv.plex.PlexMediaPlayer.json
+
+# Fix: Incorrect sRGB profile
+find build -name 'tv.plex.PlexMediaPlayer.png' | xargs -I'{}' pngcrush -ow -rem allb -reduce '{}'
