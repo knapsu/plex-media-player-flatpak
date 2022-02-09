@@ -13,5 +13,10 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+      - name: Cache data
+        uses: actions/cache@v2
+        with:
+          key: flatpak-cache
+          path: ~/flatpak-builder
       - name: Run build script
         run: ./scripts/build.sh
