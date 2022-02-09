@@ -7,7 +7,9 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
-    container: knapsu/plex-media-player-flatpak:focal
+    container:
+      image: knapsu/plex-media-player-flatpak:focal
+      options: --privileged --device /dev/fuse
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
