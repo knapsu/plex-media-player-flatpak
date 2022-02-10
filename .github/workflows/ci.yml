@@ -17,8 +17,10 @@ jobs:
       - name: Cache data
         uses: actions/cache@v2
         with:
-          key: flatpak-cache
-          path: ~/flatpak-builder
+          path: flatpak-builder
+          key: ${{ runner.os }}-cache-${{ hashFiles('tv.plex.PlexMediaPlayer.json', 'modules/**/*.json', 'modules/**/*.yml') }}
+          restore-keys: |
+            ${{ runner.os }}-cache-
       - name: Run build script
         run: ./scripts/build.sh
   publish:
@@ -30,6 +32,8 @@ jobs:
       UPLOAD_SERVER: ${{ secrets.UPLOAD_SERVER }}
       UPLOAD_PATH: ${{ secrets.UPLOAD_PATH }}
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
       - name: Install SSH Key
         uses: shimataro/ssh-key-action@v2
         with:
