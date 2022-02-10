@@ -9,7 +9,7 @@ git config --global advice.detachedHead false
 git config --global init.defaultBranch master
 
 # Define build variables
-DATE=$(date -u +'%Y%m%d')
+DATE=$(date -u +'%Y-%m-%d')
 
 if [[ "${TRAVIS_EVENT_TYPE}" == "cron" ]]; then
   echo "Scheduled build"
@@ -50,7 +50,7 @@ if [[ -n "${PLEX_TAG}" ]]; then
   else
     VERSION="${PLEX_TAG}"
   fi
-  sed -z -E "s|<releases>.*</releases>|<releases><release version=\"${VERSION}\"/></releases>|" -i app/tv.plex.PlexMediaPlayer.appdata.xml
+  sed -z -E "s|<releases>.*</releases>|<releases><release version=\"${VERSION}\" date=\"${DATE}\"/></releases>|" -i app/tv.plex.PlexMediaPlayer.appdata.xml
 else
   echo "Stripping release information from metadata file"
   cp tv.plex.PlexMediaPlayer.appdata.xml app/tv.plex.PlexMediaPlayer.appdata.xml

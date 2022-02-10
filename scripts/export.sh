@@ -8,6 +8,25 @@ WORKDIR=${PWD}
 BUILD_DIR="app/build"
 REPO_DIR="repo"
 
+OPTIONS=$(getopt -o '' -l 'comment:' -- "$@")
+if [ $? -ne 0 ] ; then
+  echo "Invalid script arguments" >&2
+  exit 2
+fi
+eval set -- "$OPTIONS"
+
+while true; do
+  case "$1" in
+    (--comment)
+      COMMENT="$2"
+      shift 2;;
+    (--)
+      shift; break;;
+    (*)
+      break;;
+  esac
+done
+
 if [[ -z "${PLEX_TAG}" ]]; then
   echo "Not a release. Skipping upload."
   exit
@@ -38,11 +57,18 @@ if [[ -n "${PLEX_TAG}" ]]; then
   FLATPAK_BRANCH="release"
 fi
 
+if [[ -n "${COMMENT}" ]]; then
+  FLATPAK_SUBJECT=${COMMENT}
+fi
+
 echo "commit: ${FLATPAK_SUBJECT}"
 echo "branch: ${FLATPAK_BRANCH}"
 
 # Sign commit
 flatpak build-export --subject="${FLATPAK_SUBJECT}" --gpg-sign=45971D9CA4780454 --update-appstream "${REPO_DIR}" "${BUILD_DIR}" "${FLATPAK_BRANCH}"
 
+echo "Repository branches:"
 flatpak repo --branches repo
-# flatpak repo --commits=app/tv.plex.PlexMediaPlayer/x86_64/${FLATPAK_BRANCH} repo
+
+echo "Repository commits:"
+flatpak repo --commits=app/tv.plex.PlexMediaPlayer/x86_64/${FLATPAK_BRANCH} repo

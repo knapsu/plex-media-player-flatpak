@@ -3,6 +3,7 @@ on:
   push:
     paths-ignore:
       - 'docker/**'
+      - '**/*.md'
 jobs:
   build:
     name: Build
@@ -10,18 +11,9 @@ jobs:
     container:
       image: knapsu/plex-media-player-flatpak:focal
       options: --privileged --device /dev/fuse
-    env:
-      UPLOAD_USER: ${{ secrets.UPLOAD_USER }}
-      UPLOAD_SERVER: ${{ secrets.UPLOAD_SERVER }}
-      UPLOAD_PATH: ${{ secrets.UPLOAD_PATH }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Install SSH Key
-        uses: shimataro/ssh-key-action@v2
-        with:
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          known_hosts: ${{ secrets.UPLOAD_SERVER }}
       - name: Cache data
         uses: actions/cache@v2
         with:
@@ -29,5 +21,23 @@ jobs:
           path: ~/flatpak-builder
       - name: Run build script
         run: ./scripts/build.sh
+  publish:
+    name: Publish
+    needs: build
+    runs-on: ubuntu-latest
+    env:
+      UPLOAD_USER: ${{ secrets.UPLOAD_USER }}
+      UPLOAD_SERVER: ${{ secrets.UPLOAD_SERVER }}
+      UPLOAD_PATH: ${{ secrets.UPLOAD_PATH }}
+    steps:
+      - name: Install SSH Key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          known_hosts: ${{ secrets.UPLOAD_SERVER }}
       - name: Sync Flatpak repository
         run: ./scripts/repo.sh --download
+      - name: Add package to repository
+        run: ./scripts/export.sh
+#      - name: Sync Flatpak repository
+#        run: ./scripts/repo.sh --upload
