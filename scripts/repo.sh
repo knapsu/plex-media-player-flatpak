@@ -39,10 +39,10 @@ UPLOAD_PATH=${UPLOAD_PATH:?Missing path variable}
 
 if [[ "${REPO_DOWNLOAD}" == "true" ]]; then
   echo "Download repository"
-  rsync --archive --delete --exclude '*.lock' --stats -e "ssh -i keys/id_rsa" ${UPLOAD_USER}@${UPLOAD_SERVER}:"${UPLOAD_PATH}/" "${REPO_DIR}/"
+  rsync --archive --delete --exclude '*.lock' --stats ${UPLOAD_USER}@${UPLOAD_SERVER}:"${UPLOAD_PATH}/" "${REPO_DIR}/"
 fi
 
 if [[ "${REPO_UPLOAD}" == "true" ]]; then
   echo "Upload repository"
-  rsync --archive --delete --exclude '*.lock' --stats -e "ssh -i keys/id_rsa" "${REPO_DIR}/" ${UPLOAD_USER}@${UPLOAD_SERVER}:"${UPLOAD_PATH}/"
+  rsync --archive --delete --exclude '*.lock' --stats "${REPO_DIR}/" ${UPLOAD_USER}@${UPLOAD_SERVER}:"${UPLOAD_PATH}/"
 fi
