@@ -17,10 +17,11 @@ jobs:
       - name: Cache data
         uses: actions/cache@v2
         with:
-          path: flatpak-builder
+          path: |
+            flatpak-builder/
+            !flatpak-builder/rofiles/
           key: ${{ runner.os }}-cache-${{ hashFiles('tv.plex.PlexMediaPlayer.json', 'modules/**/*.json', 'modules/**/*.yml') }}
-          restore-keys: |
-            ${{ runner.os }}-cache-
+          restore-keys: ${{ runner.os }}-cache-
       - name: Run build script
         run: ./scripts/build.sh
   publish:
