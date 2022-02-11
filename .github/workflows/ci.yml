@@ -14,14 +14,14 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Cache data
+      - name: Cache
         uses: actions/cache@v2
         with:
           path: |
-            flatpak-builder/
-            !flatpak-builder/rofiles/
-          key: ${{ runner.os }}-cache-${{ hashFiles('tv.plex.PlexMediaPlayer.json', 'modules/**/*.json', 'modules/**/*.yml') }}
-          restore-keys: ${{ runner.os }}-cache-
+            flatpak-builder/*
+            !flatpak-builder/rofiles
+          key: flatpak-builder-${{ hashFiles('tv.plex.PlexMediaPlayer.json', 'modules/io.mpv.Mpv.yml') }}
+          restore-keys: flatpak-builder-
       - name: Run build script
         run: ./scripts/build.sh
   publish:
