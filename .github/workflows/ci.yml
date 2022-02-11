@@ -39,7 +39,7 @@ jobs:
         uses: shimataro/ssh-key-action@v2
         with:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          known_hosts: ${{ secrets.UPLOAD_SERVER }}
+          known_hosts: ${{ secrets.SSH_KNOWN_HOSTS }}
       - name: Sync Flatpak repository
         run: ./scripts/repo.sh --download
       - name: Add package to repository
