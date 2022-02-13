@@ -33,16 +33,16 @@ done
 
 REPO_DIR="repo"
 
-UPLOAD_USER=${UPLOAD_USER:?Missing user variable}
-UPLOAD_SERVER=${UPLOAD_SERVER:?Missing server variable}
-UPLOAD_PATH=${UPLOAD_PATH:?Missing path variable}
+SCP_USER=${SCP_USER:=knapsu}
+SCP_SERVER=${SCP_SERVER:?Missing SCP_SERVER variable}
+SCP_PATH=${SCP_PATH:?Missing SCP_PATH variable}
 
 if [[ "${REPO_DOWNLOAD}" == "true" ]]; then
   echo "Download repository"
-  rsync --archive --delete --exclude '*.lock' --stats ${UPLOAD_USER}@${UPLOAD_SERVER}:"${UPLOAD_PATH}/" "${REPO_DIR}/"
+  rsync --archive --delete --exclude '*.lock' --stats ${SCP_USER}@${SCP_SERVER}:"${SCP_PATH}/" "${REPO_DIR}/"
 fi
 
 if [[ "${REPO_UPLOAD}" == "true" ]]; then
   echo "Upload repository"
-  rsync --archive --delete --exclude '*.lock' --stats "${REPO_DIR}/" ${UPLOAD_USER}@${UPLOAD_SERVER}:"${UPLOAD_PATH}/"
+  rsync --archive --delete --exclude '*.lock' --stats "${REPO_DIR}/" ${SCP_USER}@${SCP_SERVER}:"${SCP_PATH}/"
 fi
