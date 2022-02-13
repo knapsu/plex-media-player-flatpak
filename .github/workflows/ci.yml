@@ -29,9 +29,9 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     env:
-      UPLOAD_USER: ${{ secrets.UPLOAD_USER }}
-      UPLOAD_SERVER: ${{ secrets.UPLOAD_SERVER }}
-      UPLOAD_PATH: ${{ secrets.UPLOAD_PATH }}
+      SCP_USER: ${{ secrets.SCP_USER }}
+      SCP_SERVER: ${{ secrets.SCP_SERVER }}
+      SCP_PATH: ${{ secrets.SCP_PATH }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
